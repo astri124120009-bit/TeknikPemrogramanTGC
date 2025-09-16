@@ -1,0 +1,34 @@
+def hitung_total(harga, jumlah, diskon=0):
+    # Hitung total harga sebelum diskon
+    total = harga * jumlah 
+    # Jika ada diskon, hitung potongan
+    if diskon > 0:
+        potongan = total * (diskon / 100)
+        total -= potongan
+    return int(total)
+harga = int(input("Masukkan harga barang: "))
+jumlah = int(input("Masukkan jumlah barang: "))
+diskon = int(input("Masukkan diskon (%): "))
+
+total_belanja = hitung_total(harga, jumlah, diskon)
+print("Total belanja = ", total_belanja)
+
+def c_to_f(c):
+    """Konversi Celcius ke Fahrenheit"""
+    return (c * 9/5) + 32
+def f_to_c(f):
+    """Konversi Fahrenheit ke Celcius"""
+    return (f - 32) * 5/9
+# Program utama
+print("=== Program Konversi Suhu ===")
+print("1. Celcius ke Fahrenheit")
+print("2. Fahrenheit ke Celcius")
+pilihan = input("Pilih konversi (1/2): ")
+if pilihan == "1":
+    c = float(input("Masukkan suhu Celcius: "))
+    print("Suhu dalam Fahrenheit =", c_to_f(c))
+elif pilihan == "2":
+    f = float(input("Masukkan suhu Fahrenheit: "))
+    print("Suhu dalam Celcius =", f_to_c(f))
+else:
+    print("Pilihan tidak valid.")
