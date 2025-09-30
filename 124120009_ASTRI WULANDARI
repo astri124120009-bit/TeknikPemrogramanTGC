@@ -1,0 +1,57 @@
+Challenges 1
+# Membuat class induk bernama Sensor
+class Sensor:
+    def __init__(self, id_sensor, lokasi, jenis):
+        self.id_sensor = id_sensor
+        self.lokasi = lokasi
+        self.jenis = jenis
+    def info(self):
+        print("Informasi Sensor:")
+        print(f"ID Sensor   : {self.id_sensor}")
+        print(f"Lokasi      : {self.lokasi}")
+        print(f"Jenis       : {self.jenis}")
+class SensorSeismik(Sensor):
+    def __init__(self, id_sensor, lokasi, jenis, frekuensi_sampling):
+        super().__init__(id_sensor, lokasi, jenis)
+        self.frekuensi_sampling = frekuensi_sampling  # dalam Hz
+    def jumlah_sampel(self, durasi_detik):
+        """
+        Menghitung jumlah data amplitudo yang dikumpulkan dalam durasi tertentu.
+        Formula: frekuensi_sampling * durasi
+        """
+        return self.frekuensi_sampling * durasi_detik
+if __name__ == "__main__":
+    sensor_seismik = SensorSeismik("S001", "Yogyakarta", "Seismik", 100)
+    sensor_seismik.info()
+    print(f"Frekuensi Sampling : {sensor_seismik.frekuensi_sampling} Hz")
+    durasi = 10  # dalam detik
+    jumlah = sensor_seismik.jumlah_sampel(durasi)
+    print(f"Jumlah Sampel dalam {durasi} detik : {jumlah} sampel")
+
+    Challenges 2
+    # Membuat class abstrak
+class Survey(ABC):
+    abstractmethod
+    def processing(self):
+        pass
+# Class turunan untuk Seismic Survey
+class SeismicSurvey(Survey):
+    def processing(self):
+        print("Memproses data seismik: Filtering sinyal dan stacking gelombang.")
+# Class turunan untuk Gravity Survey
+class GravitySurvey(Survey):
+    def processing(self):
+        print("Memproses data gravitasi: Upward continuation dan koreksi Bouguer.")
+# Class turunan untuk Magnetik Survey
+class MagnetikSurvey(Survey):
+    def processing(self):
+        print("Memproses data magnetik: Pemetaan anomali dan reduksi ke kutub.")
+# Membuat objek-objek survey
+seismic = SeismicSurvey()
+gravity = GravitySurvey()
+magnetik = MagnetikSurvey()
+# Memasukkan objek ke dalam list
+daftar_survey = [seismic, gravity, magnetik]
+# Iterasi dan memanggil method processing untuk setiap objek
+for survey in daftar_survey:
+    survey.processing()
